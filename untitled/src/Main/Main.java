@@ -33,6 +33,7 @@ public class Main {
                     operation += 0;
             }
         }
+        isOneOperator(character.toString());
         String substr = String.valueOf(character);
         String[] substr1 = substr.split("[+-/*]");
         String left_part = substr1[0];
@@ -151,5 +152,18 @@ public class Main {
             return true;
         }
         return false;
+    }
+    static boolean isOneOperator(String s){
+        int counter = 0;
+        char[] sub = s.toCharArray();
+        if (sub[0] == '+' || sub[0] == '-' || sub[0] == '*' || sub[0] == '/') {
+            counter += 1;
+        }
+        if (counter == 1){
+            return true;
+        }
+        else {
+            throw new IllegalArgumentException("Недопустимое количество операторов");
+        }
     }
 }
