@@ -33,7 +33,7 @@ public class Main {
                     operation += 0;
             }
         }
-        isOneOperator(character.toString());
+        isOneOperator(character);
         String substr = String.valueOf(character);
         String[] substr1 = substr.split("[+-/*]");
         String left_part = substr1[0];
@@ -41,7 +41,7 @@ public class Main {
         boolean isRomanNumber = false;
         int left = 0;
         int right = 0;
-         if (isRoman(left_part) && isRoman(right_part)) {
+        if (isRoman(left_part) && isRoman(right_part)) {
             left += convertToArabic(left_part);
             right += convertToArabic(right_part);
             isRomanNumber = true;
@@ -49,7 +49,7 @@ public class Main {
             left = Integer.parseInt(left_part);
             right = Integer.parseInt(right_part);
         }
-         if (left < 1 || left > 10 || right < 1 || right > 10) {
+        if (left < 1 || left > 10 || right < 1 || right > 10) {
             throw new IllegalArgumentException("Недопустимое значение");
         }
         int result = 0;
@@ -153,17 +153,19 @@ public class Main {
         }
         return false;
     }
-    static boolean isOneOperator(String s){
-        int counter = 0;
-        char[] sub = s.toCharArray();
-        if (sub[0] == '+' || sub[0] == '-' || sub[0] == '*' || sub[0] == '/') {
-            counter += 1;
+
+    static boolean isOneOperator(char[] input) {
+        int count = 0;
+
+        for (int i = 0; i < input.length; i++) {
+            char c = input[i];
+            if (c == '+' || c == '-' || c == '*' || c == '/') {
+                count++;
+            }
         }
-        if (counter == 1){
-            return true;
-        }
-        else {
+        if (count > 1) {
             throw new IllegalArgumentException("Недопустимое количество операторов");
         }
+        return true;
     }
 }
